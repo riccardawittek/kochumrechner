@@ -8,14 +8,15 @@
 
 <body>
     <form id="form">
-        <input name="Ausgangswert" />
+        <input name="Ausgangswert" id="Ausgangswert" />
         <button type="submit">Umrechnen</button>
     </form>
     <script type="text/javascript">
         let form = document.getElementById("form")
         form.onsubmit = umrechnung
-        function umrechnung() {
+        function umrechnung(submitedform) {
             console.log("in Umrechnung");
+            let Ausgangswert = document.getElementById("Ausgangswert").value
             return false;
         }
 
