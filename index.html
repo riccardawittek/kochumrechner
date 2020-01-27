@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Der ultimative Kochumrechner!!!</title>
 
 </head>
+
 <body>
-<form>
-    <input name="Ausgangswert"/>
-    <button type="submit">Umrechnen</button>
-</form>
-<script type="text/javascript">
-    console.log("hello world");
-</script>
+    <form id="form">
+        <input name="Ausgangswert" />
+        <button type="submit">Umrechnen</button>
+    </form>
+    <script type="text/javascript">
+        let form = document.getElementById("form")
+        form.onsubmit = umrechnung
+        function umrechnung() {
+            console.log("in Umrechnung");
+            return false;
+        }
+
+    </script>
 </body>
+
 </html>
