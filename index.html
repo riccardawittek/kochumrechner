@@ -8,14 +8,24 @@
 
 <body>
     <form id="form">
-       Milch in ml: <input name="Ausgangswert" id="Ausgangswert" />
+      <span id="Eingabelabel"></span> <input name="Ausgangswert" id="Ausgangswert" />
        <button type="submit">Umrechnen</button><br/>
-       Milch in gramm: <output id="ErgebnisMilch" for="Ausgangswert"></output>
-       
-
-        
+      <span id= "Ergebnislabel"></span> <output id="ErgebnisMilch" for="Ausgangswert"></output> 
     </form>
     <script type="text/javascript">
+    console.log("start von javascript")
+        let milchObjekt = {
+            name: 'Milch',
+            eingabe: 'ml',
+            faktor: 1.03,
+            ausgabe: 'gramm',
+        }
+        let Eingabefeld = document.getElementById("Eingabelabel")
+        Eingabefeld.innerHTML = milchObjekt.name + " in " + milchObjekt.eingabe + " : "
+        let Ergebnisfeld = document.getElementById("Ergebnislabel")
+        Ergebnisfeld.innerHTML = milchObjekt.name + " in " + milchObjekt.ausgabe + " : "
+    
+
         let form = document.getElementById("form")
         form.onsubmit = umrechnung
         function umrechnung(submitedform) {
@@ -23,9 +33,7 @@
             let Ausgangswert = document.getElementById("Ausgangswert").value
             let Umrechnungsfaktor = 1.03
             let Ergebnis = Ausgangswert * Umrechnungsfaktor
-            document.getElementById("ErgebnisMilch")
             let Ergebniselement = document.getElementById("ErgebnisMilch")
-            Ergebniselement.innerHTML
             Ergebniselement.innerHTML = Ergebnis
             return false;
             
