@@ -9,7 +9,7 @@
 <body>
     <form id="form">
       <!-- <option value="0">Milch</option> -->
-      <select>
+      <select id="Auswahlliste">
       </select><br>
       <span id="Eingabelabel"></span> <input name="Ausgangswert" id="Ausgangswert" />
        <button type="submit">Umrechnen</button><br/>
@@ -23,8 +23,22 @@
                 eingabe: 'ml',
                 faktor: 1.03,
                 ausgabe: 'gramm',
+            },
+            {
+                name: "Mehl",
+                eingabe: "gramm",
+                faktor: 1.08,
+                ausgabe: "Regenbögen",
+                
             }
         ]
+
+        for (let index in umrechnungsListe){
+            console.log(index)
+        auswahllisteVariable = document.getElementById("Auswahlliste")
+        auswahllisteVariable.innerHTML += "<option value" + index + ">" + umrechnungsListe[index].name + "</option>" 
+        }
+
         let Eingabefeld = document.getElementById("Eingabelabel")
         Eingabefeld.innerHTML = umrechnungsListe[0].name + " in " + umrechnungsListe[0].eingabe + " : "
         let Ergebnisfeld = document.getElementById("Ergebnislabel")
