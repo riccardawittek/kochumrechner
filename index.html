@@ -31,7 +31,7 @@
         function umrechnung(submitedform) {
             console.log("in Umrechnung");
             let Ausgangswert = document.getElementById("Ausgangswert").value
-            let Umrechnungsfaktor = 1.03
+            let Umrechnungsfaktor = milchObjekt.faktor
             let Ergebnis = Ausgangswert * Umrechnungsfaktor
             let Ergebniselement = document.getElementById("ErgebnisMilch")
             Ergebniselement.innerHTML = Ergebnis
