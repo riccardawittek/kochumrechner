@@ -40,6 +40,14 @@
             console.log('in auswahlen')
             let auswahllisteVariable = document.getElementById("Auswahlliste")
             ausgewähltVariable = auswahllisteVariable.selectedIndex
+            setzeLabels()
+        }
+
+        function setzeLabels() {
+            let Eingabefeld = document.getElementById("Eingabelabel")
+            Eingabefeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].eingabe + " : "
+            let Ergebnisfeld = document.getElementById("Ergebnislabel")
+            Ergebnisfeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].ausgabe + " : "
         }
     </script>
     <form id="form" onsubmit="return umrechnung()">
@@ -56,11 +64,11 @@
         for (let index in umrechnungsListe) {
             console.log(index)
             document.getElementById("Auswahlliste").innerHTML += "<option value" + index + ">" + umrechnungsListe[index].name + "</option>"
+
         }
-        let Eingabefeld = document.getElementById("Eingabelabel")
-        Eingabefeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].eingabe + " : "
-        let Ergebnisfeld = document.getElementById("Ergebnislabel")
-        Ergebnisfeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].ausgabe + " : "
+
+        setzeLabels()
+
 
     </script>
 </body>
