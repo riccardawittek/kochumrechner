@@ -7,6 +7,22 @@
 </head>
 
 <body>
+    <style type="text/css">
+        #Eingabelabel {
+            font-size: large; font-style: italic; color: midnightblue;}
+        #Ergebnislabel {
+            font-size: large; font-style: italic; color: midnightblue;}
+        #Auswahlliste {
+            font-size: large; font-style: inherit; background-color: rgb(219, 227, 236); color: midnightblue;}
+        #Ausgangswert {
+            font-size: large; font-style: inherit; background-color: rgb(219, 227, 236); color: midnightblue;}
+        button {font-size: medium; font-style: inherit; background-color: lightsteelblue; color: midnightblue}
+        
+        
+
+
+        
+    </style>
     <script type="text/javascript">
         let umrechnungsListe = [
             {
@@ -16,11 +32,35 @@
                 ausgabe: 'gramm',
             },
             {
-                name: "Mehl",
-                eingabe: "gramm",
-                faktor: 1.08,
-                ausgabe: "Regenbögen",
+                name: "Eier (Größe S)",
+                eingabe: "Stück",
+                faktor: 50,
+                ausgabe: "gramm",
+            },
+            {
+                name: "Eier (Größe M)",
+                eingabe: "Stück",
+                faktor: 53,
+                ausgabe: "gramm",
+            },
+            {
+                name: "Eier (Größe L)",
+                eingabe: "Stück",
+                faktor: 63,
+                ausgabe: "gramm",
 
+            },
+            {
+                name: "Obers",
+                eingabe: "ml",
+                faktor: 1.00813,
+                ausgabe: "gramm",
+            },
+            {
+                name: "Öl",
+                eingabe: "ml",
+                faktor: 1.55556,
+                ausgabe: "gramm",
             }
         ]
         
