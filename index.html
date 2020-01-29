@@ -7,16 +7,7 @@
 </head>
 
 <body>
-    <form id="form">
-      <!-- <option value="0">Milch</option> -->
-      <select id="Auswahlliste">
-      </select><br>
-      <span id="Eingabelabel"></span> <input name="Ausgangswert" id="Ausgangswert" />
-       <button type="submit">Umrechnen</button><br/>
-      <span id= "Ergebnislabel"></span> <output id="ErgebnisMilch" for="Ausgangswert"></output> 
-    </form>
     <script type="text/javascript">
-    console.log("start von javascript")
         let umrechnungsListe = [
             {
                 name: 'Milch',
@@ -29,35 +20,47 @@
                 eingabe: "gramm",
                 faktor: 1.08,
                 ausgabe: "Regenbögen",
-                
+
             }
         ]
+        
+        let ausgewähltVariable = 0
 
-        for (let index in umrechnungsListe){
-            console.log(index)
-        auswahllisteVariable = document.getElementById("Auswahlliste")
-        auswahllisteVariable.innerHTML += "<option value" + index + ">" + umrechnungsListe[index].name + "</option>" 
-        }
-
-        let Eingabefeld = document.getElementById("Eingabelabel")
-        Eingabefeld.innerHTML = umrechnungsListe[0].name + " in " + umrechnungsListe[0].eingabe + " : "
-        let Ergebnisfeld = document.getElementById("Ergebnislabel")
-        Ergebnisfeld.innerHTML = umrechnungsListe[0].name + " in " + umrechnungsListe[0].ausgabe + " : "
-    
-
-        let form = document.getElementById("form")
-        form.onsubmit = umrechnung
         function umrechnung(submitedform) {
             console.log("in Umrechnung");
             let Ausgangswert = document.getElementById("Ausgangswert").value
-            let Umrechnungsfaktor = umrechnungsListe[0].faktor
+            let Umrechnungsfaktor = umrechnungsListe[ausgewähltVariable].faktor
             let Ergebnis = Ausgangswert * Umrechnungsfaktor
-            let Ergebniselement = document.getElementById("ErgebnisMilch")
+            let Ergebniselement = document.getElementById("Ergebnis")
             Ergebniselement.innerHTML = Ergebnis
             return false;
-    
         }
+
+        function Auswählen() {
+            console.log('in auswahlen')
+            let auswahllisteVariable = document.getElementById("Auswahlliste")
+            ausgewähltVariable = auswahllisteVariable.selectedIndex
+        }
+    </script>
+    <form id="form" onsubmit="return umrechnung()">
+        <!-- <option value="0">Milch</option> -->
+        <select id="Auswahlliste" onchange="Auswählen()">
+        </select><br>
+        <span id="Eingabelabel"></span> <input name="Ausgangswert" id="Ausgangswert" />
+        <button type="submit">Umrechnen</button><br />
+        <span id="Ergebnislabel"></span> <output id="Ergebnis" for="Ausgangswert"></output>
+    </form>
+    <script type="text/javascript">
+        console.log("start von javascript")
         
+        for (let index in umrechnungsListe) {
+            console.log(index)
+            document.getElementById("Auswahlliste").innerHTML += "<option value" + index + ">" + umrechnungsListe[index].name + "</option>"
+        }
+        let Eingabefeld = document.getElementById("Eingabelabel")
+        Eingabefeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].eingabe + " : "
+        let Ergebnisfeld = document.getElementById("Ergebnislabel")
+        Ergebnisfeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].ausgabe + " : "
 
     </script>
 </body>
