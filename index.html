@@ -2,115 +2,186 @@
 <html>
 
 <head>
-    <title>Der ultimative Kochumrechner!!!</title>
+    <title>Kochumrechner by Ricci</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
 </head>
 
 <body>
-    <style type="text/css">
-        #Eingabelabel {
-            font-size: large; font-style: italic; color: midnightblue;}
-        #Ergebnislabel {
-            font-size: large; font-style: italic; color: midnightblue;}
-        #Auswahlliste {
-            font-size: large; font-style: inherit; background-color: rgb(219, 227, 236); color: midnightblue;}
-        #Ausgangswert {
-            font-size: large; font-style: inherit; background-color: rgb(219, 227, 236); color: midnightblue;}
-        button {font-size: medium; font-style: inherit; background-color: lightsteelblue; color: midnightblue}
-        
-        
+         <div style="text-align: center">
+        </br>
+        <h1>Der ultimative Kochumrechner!</h1> </br>
 
+        <img src="betterheader.jpeg" alt="header with baking utensils">
 
-        
-    </style>
-    <script type="text/javascript">
-        let umrechnungsListe = [
-            {
-                name: 'Milch',
-                eingabe: 'ml',
-                faktor: 1.03,
-                ausgabe: 'gramm',
-            },
-            {
-                name: "Eier (Größe S)",
-                eingabe: "Stück",
-                faktor: 50,
-                ausgabe: "gramm",
-            },
-            {
-                name: "Eier (Größe M)",
-                eingabe: "Stück",
-                faktor: 53,
-                ausgabe: "gramm",
-            },
-            {
-                name: "Eier (Größe L)",
-                eingabe: "Stück",
-                faktor: 63,
-                ausgabe: "gramm",
+        <h2> Mit dem Kochumrechner können Sie nun Zutaten in andere Maßeinheiten rechnen. </h2>
+        <style type="text/css">
 
-            },
-            {
-                name: "Obers",
-                eingabe: "ml",
-                faktor: 1.00813,
-                ausgabe: "gramm",
-            },
-            {
-                name: "Öl",
-                eingabe: "ml",
-                faktor: 1.55556,
-                ausgabe: "gramm",
+            .custom-row {
+                font-size: 16pt;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-style: italic;
+                color: midnightblue;
+                
             }
-        ]
+            
+
+            .choosen-row {
+                font-size: 16pt;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-style: inherit;
+                background-color: rgb(219, 227, 236);
+                color: midnightblue;
+            }
+
+            button {
+                display: inline-block;
+                font-size: medium;
+                font-style: inherit;
+                background-color: lightsteelblue;
+                transition: .3s all ease 0s;
+                color: midnightblue;
+            }
+
+            h1 {
+                font-size: xx-large;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-style: italic;
+                color: midnightblue;
+            }
+
+            h2 {
+                font-size: x-large;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-style: italic;
+                color: midnightblue;
+            }
+
+            #Ergebnis {
+                font-size: x-large;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: midnightblue;
+                text-decoration: underline;
+            }
+
+            p {
+                font-size: 12pt;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: midnightblue;
+                font-style: italic;
+            }
+        </style>
+        <script type="text/javascript">
+            let umrechnungsListe = [
+                {
+                    name: 'Milch',
+                    eingabe: 'ml',
+                    faktor: 1.03,
+                    ausgabe: 'gramm',
+                },
+                {
+                    name: "Eier (Größe S)",
+                    eingabe: "Stück",
+                    faktor: 50,
+                    ausgabe: "gramm",
+                },
+                {
+                    name: "Eier (Größe M)",
+                    eingabe: "Stück",
+                    faktor: 53,
+                    ausgabe: "gramm",
+                },
+                {
+                    name: "Eier (Größe L)",
+                    eingabe: "Stück",
+                    faktor: 63,
+                    ausgabe: "gramm",
+
+                },
+                {
+                    name: "Obers",
+                    eingabe: "ml",
+                    faktor: 1.00813,
+                    ausgabe: "gramm",
+                },
+                {
+                    name: "Öl",
+                    eingabe: "ml",
+                    faktor: 1.55556,
+                    ausgabe: "gramm",
+                }
+            ]
+
+            let ausgewähltVariable = 0
+
+            function umrechnung(submitedform) {
+                console.log("in Umrechnung");
+                let Ausgangswert = document.getElementById("Ausgangswert").value
+                let Umrechnungsfaktor = umrechnungsListe[ausgewähltVariable].faktor
+                let Ergebnis = Ausgangswert * Umrechnungsfaktor
+                let Ergebniselement = document.getElementById("Ergebnis")
+                Ergebniselement.innerHTML = Ergebnis
+                return false;
+            }
+
+            function Auswählen() {
+                console.log('in auswahlen')
+                let auswahllisteVariable = document.getElementById("Auswahlliste")
+                ausgewähltVariable = auswahllisteVariable.selectedIndex
+                setzeLabels()
+            }
+
+            function setzeLabels() {
+                let Eingabefeld = document.getElementById("Eingabelabel")
+                Eingabefeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].eingabe + " : "
+                let Ergebnisfeld = document.getElementById("Ergebnislabel")
+                Ergebnisfeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].ausgabe + " : "
+            }
+        </script>
+        <form id="form" onsubmit="return umrechnung()">
+            <!-- <option value="0">Milch</option> -->
+            <select class="choosen-row" id="Auswahlliste" onchange="Auswählen()">
+            </select>
+            </br>
+            </br>
+            <div class="custom-box"><span class="custom-row" id="Eingabelabel"></span> <input class="choosen-row"
+                    name="Ausgangswert" id="Ausgangswert" placeholder="z.B 250" />
+                <button class="btn btn-light" type="submit">Umrechnen</button><br />
+            </div>
         
-        let ausgewähltVariable = 0
+            <div class="container-ergebnis">
+                <span class="custom-row" id="Ergebnislabel"></span> <output id="Ergebnis" for="Ausgangswert"></output>
 
-        function umrechnung(submitedform) {
-            console.log("in Umrechnung");
-            let Ausgangswert = document.getElementById("Ausgangswert").value
-            let Umrechnungsfaktor = umrechnungsListe[ausgewähltVariable].faktor
-            let Ergebnis = Ausgangswert * Umrechnungsfaktor
-            let Ergebniselement = document.getElementById("Ergebnis")
-            Ergebniselement.innerHTML = Ergebnis
-            return false;
-        }
+            </div>
+        
+        </form>
+        <script type="text/javascript">
+            console.log("start von javascript")
 
-        function Auswählen() {
-            console.log('in auswahlen')
-            let auswahllisteVariable = document.getElementById("Auswahlliste")
-            ausgewähltVariable = auswahllisteVariable.selectedIndex
+            for (let index in umrechnungsListe) {
+                console.log(index)
+                document.getElementById("Auswahlliste").innerHTML += "<option value" + index + ">" + umrechnungsListe[index].name + "</option>"
+
+            }
+
             setzeLabels()
-        }
-
-        function setzeLabels() {
-            let Eingabefeld = document.getElementById("Eingabelabel")
-            Eingabefeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].eingabe + " : "
-            let Ergebnisfeld = document.getElementById("Ergebnislabel")
-            Ergebnisfeld.innerHTML = umrechnungsListe[ausgewähltVariable].name + " in " + umrechnungsListe[ausgewähltVariable].ausgabe + " : "
-        }
-    </script>
-    <form id="form" onsubmit="return umrechnung()">
-        <!-- <option value="0">Milch</option> -->
-        <select id="Auswahlliste" onchange="Auswählen()">
-        </select><br>
-        <span id="Eingabelabel"></span> <input name="Ausgangswert" id="Ausgangswert" />
-        <button type="submit">Umrechnen</button><br />
-        <span id="Ergebnislabel"></span> <output id="Ergebnis" for="Ausgangswert"></output>
-    </form>
-    <script type="text/javascript">
-        console.log("start von javascript")
-        
-        for (let index in umrechnungsListe) {
-            console.log(index)
-            document.getElementById("Auswahlliste").innerHTML += "<option value" + index + ">" + umrechnungsListe[index].name + "</option>"
-
-        }
-
-        setzeLabels()
 
 
-    </script>
+        </script>
+        <p> Viel Spaß beim Kochen!</p>
+        <img src="baking utensils.png" width="55" height="55" alt="crossing baking utensils">
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
+        integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+        integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
+        integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
+        crossorigin="anonymous"></script>
+
 </body>
 
 </html>
