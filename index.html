@@ -5,11 +5,12 @@
     <title>Kochumrechner by Ricci</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
 </head>
 
 <body>
-         <div style="text-align: center">
+    <div style="text-align: center">
         </br>
         <h1>Der ultimative Kochumrechner!</h1> </br>
 
@@ -17,15 +18,14 @@
 
         <h2> Mit dem Kochumrechner können Sie nun Zutaten in andere Maßeinheiten rechnen. </h2>
         <style type="text/css">
-
             .custom-row {
                 font-size: 16pt;
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 font-style: italic;
                 color: midnightblue;
-                
+
             }
-            
+
 
             .choosen-row {
                 font-size: 16pt;
@@ -66,6 +66,29 @@
             }
 
             p {
+                font-size: 14pt;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: midnightblue;
+                font-style: italic;
+            }
+
+            #rezept-zutaten {
+                font-size: 12pt;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: midnightblue;
+                font-style: italic;
+                }
+            
+            #rezept-name {
+                font-size: 16pt;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                color: midnightblue;
+                font-style: italic;
+                text-decoration: underline;
+
+            }
+
+            #zubereitung {
                 font-size: 12pt;
                 font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
                 color: midnightblue;
@@ -149,13 +172,46 @@
                     name="Ausgangswert" id="Ausgangswert" placeholder="z.B 250" />
                 <button class="btn btn-light" type="submit">Umrechnen</button><br />
             </div>
-        
+
             <div class="container-ergebnis">
                 <span class="custom-row" id="Ergebnislabel"></span> <output id="Ergebnis" for="Ausgangswert"></output>
 
             </div>
-        
+
         </form>
+    </br>
+    </br>
+        <p>Wenn Sie schon einmal hier sind...</p>
+    </br>
+        <p>Hier ein Rezept zum Nachkochen!:</p>
+        <div id="rezept">
+            <span id="rezept-name"></span>
+        <p>Zutatenliste:</p>
+         <div id="rezept-zutaten">
+            <span id="zutat-1"></span> / <span id="Maß-1"></span> </br>
+            <span id="zutat-2"></span> / <span id="Maß-2"></span> </br>
+            <span id="zutat-3"></span> / <span id="Maß-3"></span> </br>
+            <span id="zutat-4"></span> / <span id="Maß-4"></span> </br>
+            <span id="zutat-5"></span> / <span id="Maß-5"></span> </br>
+            <span id="zutat-6"></span> / <span id="Maß-6"></span> </br>
+            <span id="zutat-7"></span> / <span id="Maß-7"></span> </br>
+            <span id="zutat-8"></span> / <span id="Maß-8"></span> </br>
+            <span id="zutat-9"></span> / <span id="Maß-9"></span> </br>
+            <span id="zutat-10"></span> / <span id="Maß-10"></span> </br>
+            <span id="zutat-11"></span> / <span id="Maß-11"></span> </br>
+            <span id="zutat-12"></span> / <span id="Maß-12"></span> </br>
+            <span id="zutat-13"></span> / <span id="Maß-13"></span> </br>
+            <span id="zutat-14"></span> / <span id="Maß-14"></span> </br>
+            <span id="zutat-15"></span> / <span id="Maß-15"></span> </br>
+            <span id="zutat-16"></span> / <span id="Maß-16"></span> </br>
+            <span id="zutat-17"></span> / <span id="Maß-17"></span> </br>
+            </div>
+        </br>
+        </br>
+        <div id="rezept-zubereitung">
+            <span id="zubereitung"></span>
+        </div>
+        </div>
         <script type="text/javascript">
             console.log("start von javascript")
 
@@ -167,8 +223,55 @@
 
             setzeLabels()
 
+            const apiresponse = $.get("https://www.themealdb.com/api/json/v1/1/search.php?f=r",
+                                function(data, status){
+                                    console.log(data)
+                                    let firstMeal = data.meals[0];
+                                    document.getElementById('rezept-name').innerHTML = firstMeal.strMeal;
+                                    document.getElementById("zutat-1").innerHTML = firstMeal.strIngredient1;
+                                    document.getElementById("zutat-2").innerHTML = firstMeal.strIngredient2;
+                                    document.getElementById("zutat-3").innerHTML = firstMeal.strIngredient3;
+                                    document.getElementById("zutat-4").innerHTML = firstMeal.strIngredient4;
+                                    document.getElementById("zutat-5").innerHTML = firstMeal.strIngredient5;
+                                    document.getElementById("zutat-6").innerHTML = firstMeal.strIngredient6;
+                                    document.getElementById("zutat-7").innerHTML = firstMeal.strIngredient7;
+                                    document.getElementById("zutat-8").innerHTML = firstMeal.strIngredient8;
+                                    document.getElementById("zutat-9").innerHTML = firstMeal.strIngredient9;
+                                    document.getElementById("zutat-10").innerHTML = firstMeal.strIngredient10;
+                                    document.getElementById("zutat-11").innerHTML = firstMeal.strIngredient11;
+                                    document.getElementById("zutat-12").innerHTML = firstMeal.strIngredient12;
+                                    document.getElementById("zutat-13").innerHTML = firstMeal.strIngredient13;
+                                    document.getElementById("zutat-14").innerHTML = firstMeal.strIngredient14;
+                                    document.getElementById("zutat-15").innerHTML = firstMeal.strIngredient15;
+                                    document.getElementById("zutat-16").innerHTML = firstMeal.strIngredient16;
+                                    document.getElementById("zutat-17").innerHTML = firstMeal.strIngredient17;
+                                    document.getElementById("Maß-1").innerHTML = firstMeal.strMeasure1;
+                                    document.getElementById("Maß-2").innerHTML = firstMeal.strMeasure2;
+                                    document.getElementById("Maß-3").innerHTML = firstMeal.strMeasure3;
+                                    document.getElementById("Maß-4").innerHTML = firstMeal.strMeasure4;
+                                    document.getElementById("Maß-5").innerHTML = firstMeal.strMeasure5;
+                                    document.getElementById("Maß-6").innerHTML = firstMeal.strMeasure6;
+                                    document.getElementById("Maß-7").innerHTML = firstMeal.strMeasure7;
+                                    document.getElementById("Maß-8").innerHTML = firstMeal.strMeasure8;
+                                    document.getElementById("Maß-9").innerHTML = firstMeal.strMeasure9;
+                                    document.getElementById("Maß-10").innerHTML = firstMeal.strMeasure10;
+                                    document.getElementById("Maß-11").innerHTML = firstMeal.strMeasure11;
+                                    document.getElementById("Maß-12").innerHTML = firstMeal.strMeasure12;
+                                    document.getElementById("Maß-13").innerHTML = firstMeal.strMeasure13;
+                                    document.getElementById("Maß-14").innerHTML = firstMeal.strMeasure14;
+                                    document.getElementById("Maß-15").innerHTML = firstMeal.strMeasure15;
+                                    document.getElementById("Maß-16").innerHTML = firstMeal.strMeasure16;
+                                    document.getElementById("Maß-17").innerHTML = firstMeal.strMeasure17;
+                                    document.getElementById("zubereitung").innerHTML = firstMeal.strInstructions;
+                                    
+
+
+
+                                });
+            
 
         </script>
+        </br>
         <p> Viel Spaß beim Kochen!</p>
         <img src="baking utensils.png" width="55" height="55" alt="crossing baking utensils">
     </div>
